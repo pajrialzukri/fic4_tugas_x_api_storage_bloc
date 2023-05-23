@@ -92,6 +92,7 @@ class _HomePageState extends State<HomePage> {
             fontWeight: FontWeight.w600,
           ),
         ),
+        elevation: 1,
         centerTitle: true,
         actions: [
           IconButton(
@@ -109,44 +110,47 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: ListView(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(14),
-            child: Text(
-              'Discover the most modern furniture',
-              style: GoogleFonts.poppins(
-                color: Colors.black,
-                fontSize: 22,
-                fontWeight: FontWeight.w500,
+      body: Container(
+        decoration: const BoxDecoration(
+          color: Color(0xfff5f5f5),
+        ),
+        child: ListView(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(14),
+              child: Text(
+                'Discover the most modern furniture',
+                style: GoogleFonts.poppins(
+                  color: Colors.black,
+                  fontSize: 22,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          Container(
-              margin: const EdgeInsets.symmetric(horizontal: 14),
-              child: listMenu()),
-          const SizedBox(
-            height: 30,
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 14),
-            child: Text(
-              'Recommended Furnitures',
-              style: GoogleFonts.poppins(
-                color: Colors.black,
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
+            const SizedBox(
+              height: 30,
+            ),
+            Container(
+                margin: const EdgeInsets.symmetric(horizontal: 14),
+                child: listMenu()),
+            const SizedBox(
+              height: 30,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 14),
+              child: Text(
+                'Recommended Furnitures',
+                style: GoogleFonts.poppins(
+                  color: Colors.black,
+                  fontSize: 16,
+                  fontWeight: FontWeight.w500,
+                ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          Container(
-            child: GridView.builder(
+            const SizedBox(
+              height: 30,
+            ),
+            GridView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemCount: images.length,
@@ -160,53 +164,114 @@ class _HomePageState extends State<HomePage> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      SizedBox(
-                        height: 200,
-                        width: double.infinity,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(
-                              20), // Ubah angka sesuai dengan tingkat pembulatan yang diinginkan
-                          child: Image.asset(
-                            '${images[index]}',
-                            fit: BoxFit.cover,
-                          ),
+                      Expanded(
+                        // Menggunakan Expanded untuk mengatur tinggi item secara fleksibel
+                        child: Stack(
+                          children: [
+                            Container(
+                              width: double.infinity,
+                              height: 200,
+                              child: ClipRRect(
+                                borderRadius:
+                                    const BorderRadiusDirectional.only(
+                                  topStart: Radius.circular(20),
+                                  topEnd: Radius.circular(20),
+                                ),
+                                child: Image.asset(
+                                  images[index],
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              top: 10,
+                              left: 10,
+                              child: Container(
+                                width: 40,
+                                height: 30,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white,
+                                ),
+                                child: const Center(
+                                  child: Icon(
+                                    Icons.favorite,
+                                    color: Colors.pink,
+                                    size: 20,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 30,
+                              left: 0,
+                              right: 0,
+                              // top: 100,
+                              child: Container(
+                                height: 100,
+                                padding: const EdgeInsets.all(10),
+                                decoration: const BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadiusDirectional.only(
+                                    bottomStart: Radius.circular(20),
+                                    bottomEnd: Radius.circular(20),
+                                  ),
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      'Modern Chair',
+                                      style: TextStyle(
+                                        color: Colors.black,
+                                        fontSize: 14,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ),
+                                    SizedBox(height: 5),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          '\$ 200',
+                                          style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 14,
+                                            fontWeight: FontWeight.w500,
+                                          ),
+                                        ),
+                                        SizedBox(width: 10),
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.star,
+                                              color: Color.fromARGB(
+                                                  255, 184, 170, 44),
+                                              size: 20,
+                                            ),
+                                            SizedBox(width: 5),
+                                            Text('4.5'),
+                                          ],
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      const SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        'Modern Chair',
-                        style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        '\$ 200',
-                        style: GoogleFonts.poppins(
-                          color: Colors.black,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 10,
                       ),
                     ],
                   ),
                 );
               },
             ),
-          )
-        ],
+          ],
+        ),
       ),
 
       // This trailing comma makes auto-formatting nicer for build methods.

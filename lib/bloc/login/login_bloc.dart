@@ -2,7 +2,7 @@ import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../data/datasources/api_datasources.dart';
+import '../../data/datasources/auth_datasources.dart';
 import '../../data/models/request/login_model.dart';
 import '../../data/models/responses/login_response.dart';
 import 'package:http/http.dart' as http;
@@ -10,7 +10,7 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  final ApiDatasource datasource;
+  final AuthDatasource datasource;
   LoginBloc(
     this.datasource,
   ) : super(LoginInitial()) {

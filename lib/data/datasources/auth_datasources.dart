@@ -7,7 +7,7 @@ import 'package:flutter_auth_bloc/data/models/responses/profile_response.dart';
 import 'package:flutter_auth_bloc/data/models/responses/register_response.dart';
 import 'package:http/http.dart' as http;
 
-class ApiDatasource {
+class AuthDatasource {
   get context => null;
 
   Future<RegisterResponseModel> register(RegisterModel regismodel) async {

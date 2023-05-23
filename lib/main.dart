@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth_bloc/bloc/register/register_bloc.dart';
-import 'package:flutter_auth_bloc/data/datasources/api_datasources.dart';
+import 'package:flutter_auth_bloc/data/datasources/auth_datasources.dart';
 import 'package:flutter_auth_bloc/presentation/pages/routes.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -31,13 +31,13 @@ class _MyAppState extends State<MyApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider<LoginBloc>(
-          create: (context) => LoginBloc(ApiDatasource()),
+          create: (context) => LoginBloc(AuthDatasource()),
         ),
         BlocProvider<RegisterBloc>(
-          create: (context) => RegisterBloc(ApiDatasource()),
+          create: (context) => RegisterBloc(AuthDatasource()),
         ),
         BlocProvider<ProfileBloc>(
-          create: (context) => ProfileBloc(ApiDatasource()),
+          create: (context) => ProfileBloc(AuthDatasource()),
         ),
       ],
       child: MaterialApp(
